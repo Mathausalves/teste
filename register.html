@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="register-container">
+        <img src="Logo" alt="Logo" class="logo">
+        <h2>Registro do Aluno</h2>
+        <form id="registerForm">
+            <input type="text" id="regFullName" placeholder="Nome Completo" required>
+            <input type="text" id="regUsername" placeholder="Matrícula" required>
+            <input type="email" id="regEmail" placeholder="E-mail" required>
+            <input type="password" id="regPassword" placeholder="Senha Nova" required>
+            <input type="password" id="regConfirmPassword" placeholder="Confirmação de Senha" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fullName = document.getElementById('regFullName').value;
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            const user = {
+                fullName: fullName,
+                username: username,
+                email: email,
+                password: password
+            };
+
+            localStorage.setItem('user', JSON.stringify(user));
+            alert('Registro bem-sucedido! Agora você pode fazer login.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
